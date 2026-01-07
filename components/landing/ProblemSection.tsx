@@ -40,9 +40,14 @@ export function ProblemSection() {
             GoHighLevel Is Powerful. <br />
             <span className="text-muted-foreground/60">But Humans Are The Bottleneck.</span>
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-muted-foreground mb-4">
             Most agencies only use 30% of GHL's power because the interface slows them down.
           </p>
+          <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 inline-block">
+            <p className="text-red-400 font-medium">
+              ⚠️ Your team spends 12+ hours/week just updating GHL manually. Sound familiar?
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,14 @@ export default function RootLayout({
             {children}
         </main>
         <Footer />
+        
+        {/* Simple Tidio Integration Placeholder (Real one would use a specific key) */}
+        {/* <Script id="tidio-chat" strategy="lazyOnload">
+          {`
+            // Tidio Script would go here
+            console.log("Tidio placeholder loaded");
+          `}
+        </Script> */}
       </body>
     </html>
   );

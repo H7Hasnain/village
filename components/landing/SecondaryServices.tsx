@@ -24,6 +24,9 @@ export function InternalAISection() {
              </div>
           </div>
           <div className="flex-1 order-1 lg:order-2">
+            <div className="inline-block bg-purple-500/10 border border-purple-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-purple-400 mb-6 uppercase tracking-wide">
+                Perfect for: Operations Teams & HR
+            </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
               Your Team’s <span className="text-purple-500">Private AI Brain</span>
             </h2>
@@ -54,6 +57,9 @@ export function VoiceAISection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             <div className="flex-1">
+            <div className="inline-block bg-orange-500/10 border border-orange-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-orange-400 mb-6 uppercase tracking-wide">
+                Perfect for: Real Estate & High-Volume Sales
+            </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
               A Professional Voice That <span className="text-orange-500">Never Forgets</span>
             </h2>
