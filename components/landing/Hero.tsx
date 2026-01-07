@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
-import { ArrowRight, Zap, Play, Check, Clock } from 'lucide-react';
+import { ArrowRight, Zap, Play, Check, Clock, PlayCircle } from 'lucide-react';
 
 const fullChatHistory = [
   { 
@@ -147,12 +147,29 @@ export function Hero() {
               className="flex flex-col items-center lg:items-start gap-6"
             >
                 <div className="flex flex-col sm:flex-row gap-5 w-full justify-center lg:justify-start">
-                    <Button size="lg" className="h-14 px-8 text-lg font-semibold shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1 rounded-full">
-                        See Your GHL Work on Autopilot
-                        <ArrowRight className="w-5 h-5 ml-2" />
+                    <Button 
+                      size="lg" 
+                      className="group relative h-16 px-8 text-lg font-semibold overflow-hidden rounded-full transition-all hover:scale-105 active:scale-95 bg-gradient-to-r from-primary to-blue-600 hover:shadow-[0_0_40px_-10px_rgba(59,130,246,0.6)]"
+                    >
+                        <span className="relative z-10 flex items-center gap-2">
+                          See Your GHL Work on Autopilot
+                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </span>
+                        {/* Shine effect */}
+                        <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0"></div>
                     </Button>
-                    <Button variant="outline" size="lg" className="h-14 px-8 text-lg border-muted-foreground/30 hover:bg-secondary/80 hover:text-white transition-all rounded-full">
-                        See How It Works
+
+                    <Button 
+                      variant="outline" 
+                      size="lg" 
+                      className="group h-16 px-8 text-lg font-medium border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 backdrop-blur-md rounded-full transition-all hover:scale-105 active:scale-95"
+                    >
+                        <span className="flex items-center gap-3">
+                           <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                             <PlayCircle className="w-5 h-5 fill-white/20 text-white" />
+                           </div>
+                           See How It Works
+                        </span>
                     </Button>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-primary/90 font-medium bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
