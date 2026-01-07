@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Plus, Minus } from 'lucide-react';
 
 const faqs = [
   {
@@ -31,38 +31,81 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-24 bg-secondary/5">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Frequently Asked Questions</h2>
-        </div>
-
-        <div className="space-y-4">
-          {faqs.map((faq, idx) => (
-            <div key={idx} className="border border-white/10 rounded-xl bg-background overflow-hidden">
-              <button
-                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-white/[0.02] transition-colors"
-              >
-                <span className="font-semibold text-white">{faq.question}</span>
-                {openIndex === idx ? <ChevronUp className="w-5 h-5 text-muted-foreground" /> : <ChevronDown className="w-5 h-5 text-muted-foreground" />}
-              </button>
-              <AnimatePresence>
-                {openIndex === idx && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="px-6 pb-6 text-muted-foreground leading-relaxed border-t border-white/5 pt-4">
-                      {faq.answer}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+    <section className="py-24 bg-[#050505] relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
+          
+          {/* Header Section (Sticky on Desktop) */}
+          <div className="lg:w-1/3">
+            <div className="lg:sticky lg:top-32">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
+                Frequently Asked <span className="text-primary">Questions</span>
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                Everything you need to know about automating your agency with AI. Can't find the answer you're looking for? 
+                <a href="#" className="text-primary hover:underline ml-1">Chat with our team.</a>
+              </p>
+              
+              {/* Optional: Add a support card or something here */}
+              <div className="hidden lg:block p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                <p className="text-white font-semibold mb-2">Still have questions?</p>
+                <p className="text-sm text-muted-foreground mb-4">We're here to help.</p>
+                <button className="text-sm font-medium text-white bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg transition-colors">
+                    Contact Support
+                </button>
+              </div>
             </div>
-          ))}
+          </div>
+
+          {/* FAQ Items */}
+          <div className="lg:w-2/3 space-y-4">
+            {faqs.map((faq, idx) => (
+              <div 
+                key={idx} 
+                className={`group border rounded-2xl transition-all duration-300 ${
+                  openIndex === idx 
+                    ? 'bg-white/[0.03] border-primary/50 shadow-[0_0_30px_-10px_rgba(59,130,246,0.1)]' 
+                    : 'bg-transparent border-white/10 hover:border-white/20 hover:bg-white/[0.01]'
+                }`}
+              >
+                <button
+                  onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                  className="w-full flex items-start justify-between p-6 sm:p-8 text-left"
+                >
+                  <span className={`text-lg sm:text-xl font-medium transition-colors ${
+                    openIndex === idx ? 'text-white' : 'text-gray-300 group-hover:text-white'
+                  }`}>
+                    {faq.question}
+                  </span>
+                  <span className={`ml-6 flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 ${
+                    openIndex === idx 
+                      ? 'bg-primary border-primary text-white rotate-180' 
+                      : 'bg-transparent border-white/20 text-muted-foreground group-hover:border-white/40 group-hover:text-white'
+                  }`}>
+                    {openIndex === idx ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                  </span>
+                </button>
+                <AnimatePresence>
+                  {openIndex === idx && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <div className="px-6 sm:px-8 pb-8 text-muted-foreground leading-relaxed text-base sm:text-lg border-t border-white/5 pt-4">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
+
         </div>
       </div>
     </section>

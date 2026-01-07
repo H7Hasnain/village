@@ -67,9 +67,11 @@ export function Navbar() {
             </div>
 
             <div className="hidden md:flex items-center gap-4">
-              <Button size="sm" className="shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-shadow rounded-full px-6">
-                Book Demo
-              </Button>
+              <Link href="#book-demo">
+                <Button size="sm" className="shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-shadow rounded-full px-6">
+                  Book Demo
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Menu Toggle */}
@@ -117,10 +119,12 @@ export function Navbar() {
                 transition={{ delay: 0.5 }}
                 className="pt-8"
               >
-                <Button size="lg" className="w-full text-lg group" onClick={() => setIsMobileMenuOpen(false)}>
-                  Book a Free Demo
-                  <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <Link href="#book-demo" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button size="lg" className="w-full text-lg group">
+                    Book a Free Demo
+                    <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
               </motion.div>
             </div>
           </motion.div>
