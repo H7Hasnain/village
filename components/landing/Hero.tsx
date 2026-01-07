@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
-import { ArrowRight, Zap, Play, Check, Clock, PlayCircle } from 'lucide-react';
+import { ArrowRight, Zap, Play, Check, PlayCircle } from 'lucide-react';
 
 const fullChatHistory = [
   { 
@@ -97,33 +97,34 @@ export function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-32 min-h-screen flex items-center">
-      {/* Dynamic Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] opacity-40 animate-pulse"></div>
-        <div className="absolute bottom-[-10%] left-[-5%] w-[700px] h-[700px] bg-purple-500/10 rounded-full blur-[140px] opacity-30"></div>
-        <div className="absolute top-[20%] left-[10%] w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[100px] opacity-20 animate-pulse delay-1000"></div>
+    <section className="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24 min-h-[calc(100vh-80px)] flex items-center">
+      {/* Dynamic Background Elements - Optimized for different screens */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div className="absolute top-[-10%] right-[-5%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-primary/20 rounded-full blur-[80px] md:blur-[120px] opacity-40 animate-pulse"></div>
+        <div className="absolute bottom-[-10%] left-[-5%] w-[350px] md:w-[700px] h-[350px] md:h-[700px] bg-purple-500/10 rounded-full blur-[100px] md:blur-[140px] opacity-30"></div>
+        <div className="absolute top-[20%] left-[10%] w-[150px] md:w-[300px] h-[150px] md:h-[300px] bg-blue-500/10 rounded-full blur-[60px] md:blur-[100px] opacity-20 animate-pulse delay-1000"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 xl:gap-24">
+          
           {/* Text Content */}
-          <div className="flex-1 text-center lg:text-left z-10">
+          <div className="flex-1 text-center lg:text-left z-10 max-w-2xl lg:max-w-none mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border mb-8 backdrop-blur-sm group hover:bg-secondary/70 transition-colors cursor-default"
+              className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-secondary/50 border border-border mb-6 sm:mb-8 backdrop-blur-sm group hover:bg-secondary/70 transition-colors cursor-default"
             >
-              <Zap className="w-4 h-4 text-yellow-400 fill-yellow-400 group-hover:scale-110 transition-transform" />
-              <span className="text-sm font-medium text-muted-foreground group-hover:text-white transition-colors">The Future of Agency Automation</span>
+              <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400 group-hover:scale-110 transition-transform" />
+              <span className="text-xs sm:text-sm font-medium text-muted-foreground group-hover:text-white transition-colors">The Future of Agency Automation</span>
             </motion.div>
 
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-5xl sm:text-6xl lg:text-8xl font-bold tracking-tight text-white mb-8 leading-[1.05]"
+              className="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-bold tracking-tight text-white mb-6 sm:mb-8 leading-[1.1] lg:leading-[1.05]"
             >
               Control GoHighLevel <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-primary to-purple-500 animate-gradient-x">
@@ -135,7 +136,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-xl sm:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light"
+              className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-8 sm:mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light"
             >
               Stop drowning in dashboards. We build AI agents that let you manage leads, pipelines, and workflows in GoHighLevel using Telegram, WhatsApp, or chat.
             </motion.p>
@@ -146,12 +147,12 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-col items-center lg:items-start gap-6"
             >
-                <div className="flex flex-col sm:flex-row gap-5 w-full justify-center lg:justify-start">
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 w-full justify-center lg:justify-start">
                     <Button 
                       size="lg" 
-                      className="group relative h-16 px-8 text-lg font-semibold overflow-hidden rounded-full transition-all hover:scale-105 active:scale-95 bg-gradient-to-r from-primary to-blue-600 hover:shadow-[0_0_40px_-10px_rgba(59,130,246,0.6)]"
+                      className="group relative h-14 sm:h-16 px-6 sm:px-8 text-base sm:text-lg font-semibold overflow-hidden rounded-full transition-all hover:scale-105 active:scale-95 bg-gradient-to-r from-primary to-blue-600 hover:shadow-[0_0_40px_-10px_rgba(59,130,246,0.6)] w-full sm:w-auto"
                     >
-                        <span className="relative z-10 flex items-center gap-2">
+                        <span className="relative z-10 flex items-center justify-center gap-2">
                           See Your GHL Work on Autopilot
                           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </span>
@@ -162,18 +163,18 @@ export function Hero() {
                     <Button 
                       variant="outline" 
                       size="lg" 
-                      className="group h-16 px-8 text-lg font-medium border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 backdrop-blur-md rounded-full transition-all hover:scale-105 active:scale-95"
+                      className="group h-14 sm:h-16 px-6 sm:px-8 text-base sm:text-lg font-medium border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 backdrop-blur-md rounded-full transition-all hover:scale-105 active:scale-95 w-full sm:w-auto"
                     >
-                        <span className="flex items-center gap-3">
-                           <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                             <PlayCircle className="w-5 h-5 fill-white/20 text-white" />
+                        <span className="flex items-center justify-center gap-3">
+                           <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                             <PlayCircle className="w-4 h-4 sm:w-5 sm:h-5 fill-white/20 text-white" />
                            </div>
                            See How It Works
                         </span>
                     </Button>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-primary/90 font-medium bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
-                    <span className="relative flex h-2 w-2">
+                <div className="flex flex-wrap justify-center lg:justify-start items-center gap-2 text-xs sm:text-sm text-primary/90 font-medium bg-primary/10 px-4 py-2 rounded-full border border-primary/20 max-w-[90%] sm:max-w-none text-center">
+                    <span className="relative flex h-2 w-2 flex-shrink-0">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                     </span>
@@ -183,7 +184,7 @@ export function Hero() {
           </div>
 
           {/* Visual Content - Chat Interface */}
-          <div className="flex-1 w-full max-w-lg lg:max-w-xl xl:max-w-2xl z-10">
+          <div className="flex-1 w-full max-w-md lg:max-w-xl xl:max-w-2xl z-10 mt-12 lg:mt-0">
             <motion.div 
               initial={{ opacity: 0, scale: 0.95, y: 40 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -196,39 +197,39 @@ export function Hero() {
                 
                 {/* Interaction Hint */}
                  {clickCount < 3 && !isTyping && (
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="bg-white/10 backdrop-blur-md text-white px-5 py-3 rounded-full text-base font-medium flex items-center gap-2 border border-white/20 shadow-2xl transform scale-105">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-max max-w-[90%]">
+                        <div className="bg-white/10 backdrop-blur-md text-white px-4 py-2 sm:px-5 sm:py-3 rounded-full text-sm sm:text-base font-medium flex items-center justify-center gap-2 border border-white/20 shadow-2xl transform scale-105">
                             <Play className="w-4 h-4 fill-white" /> Click to continue demo
                         </div>
                     </div>
                 )}
 
                 {/* Device Frame */}
-                <div className="relative bg-[#0F0F11] rounded-[2rem] border border-white/10 p-2 shadow-2xl h-[600px] flex flex-col overflow-hidden">
+                <div className="relative bg-[#0F0F11] rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 p-1 sm:p-2 shadow-2xl h-[450px] sm:h-[550px] lg:h-[600px] flex flex-col overflow-hidden">
                   
                   {/* Status Bar */}
-                  <div className="px-6 py-3 flex justify-between items-center text-xs text-muted-foreground border-b border-white/5 bg-[#0F0F11]">
+                  <div className="px-4 sm:px-6 py-2 sm:py-3 flex justify-between items-center text-[10px] sm:text-xs text-muted-foreground border-b border-white/5 bg-[#0F0F11]">
                     <span>9:41</span>
                     <div className="flex gap-1.5">
-                      <div className="w-4 h-4 rounded-full border border-white/20"></div>
-                      <div className="w-4 h-4 rounded-full border border-white/20"></div>
-                      <div className="w-4 h-4 rounded-full bg-white/20"></div>
+                      <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full border border-white/20"></div>
+                      <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full border border-white/20"></div>
+                      <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white/20"></div>
                     </div>
                   </div>
 
                   {/* App Header */}
-                  <div className="px-6 py-4 flex items-center gap-4 bg-[#0F0F11]/50 backdrop-blur-xl border-b border-white/5 z-20">
+                  <div className="px-4 sm:px-6 py-3 sm:py-4 flex items-center gap-3 sm:gap-4 bg-[#0F0F11]/50 backdrop-blur-xl border-b border-white/5 z-20">
                     <div className="relative">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-primary flex items-center justify-center text-white shadow-lg ring-2 ring-[#0F0F11]">
-                          <Zap className="w-6 h-6 fill-white" />
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-blue-500 to-primary flex items-center justify-center text-white shadow-lg ring-2 ring-[#0F0F11]">
+                          <Zap className="w-5 h-5 sm:w-6 sm:h-6 fill-white" />
                         </div>
-                        <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-[3px] border-[#0F0F11] rounded-full"></span>
+                        <span className="absolute bottom-0 right-0 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-green-500 border-[3px] border-[#0F0F11] rounded-full"></span>
                     </div>
-                    <div className="flex-1">
-                      <div className="font-bold text-white text-lg tracking-tight">GHL AI Operator</div>
-                      <div className="text-xs text-primary font-medium tracking-wide uppercase flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                        Online • Connected to Sub-Account
+                    <div className="flex-1 min-w-0">
+                      <div className="font-bold text-white text-base sm:text-lg tracking-tight truncate">GHL AI Operator</div>
+                      <div className="text-[10px] sm:text-xs text-primary font-medium tracking-wide uppercase flex items-center gap-1.5 truncate">
+                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse flex-shrink-0"></span>
+                        Online • Connected
                       </div>
                     </div>
                   </div>
@@ -236,7 +237,7 @@ export function Hero() {
                   {/* Chat Area */}
                   <div 
                     ref={chatContainerRef}
-                    className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent bg-[#0F0F11]"
+                    className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent bg-[#0F0F11]"
                   >
                     {messages.map((msg) => (
                       <motion.div
@@ -246,9 +247,9 @@ export function Hero() {
                         transition={{ duration: 0.4 }}
                         className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
                       >
-                         <div className={`flex flex-col max-w-[85%] ${msg.type === 'user' ? 'items-end' : 'items-start'}`}>
+                         <div className={`flex flex-col max-w-[90%] sm:max-w-[85%] ${msg.type === 'user' ? 'items-end' : 'items-start'}`}>
                             <div 
-                              className={`rounded-2xl px-5 py-3.5 text-[15px] leading-relaxed shadow-sm relative group ${
+                              className={`rounded-2xl px-4 py-3 sm:px-5 sm:py-3.5 text-sm sm:text-[15px] leading-relaxed shadow-sm relative group ${
                                 msg.type === 'user' 
                                   ? 'bg-primary text-white rounded-br-sm' 
                                   : 'bg-[#1C1C1E] text-gray-100 border border-white/5 rounded-bl-sm'
@@ -288,11 +289,11 @@ export function Hero() {
                   </div>
                   
                   {/* Input Area (Mock) */}
-                  <div className="p-4 bg-[#0F0F11] border-t border-white/5">
-                    <div className="h-12 bg-[#1C1C1E] rounded-full border border-white/5 flex items-center px-4 justify-between opacity-50">
-                        <span className="text-sm text-muted-foreground">Type a command...</span>
-                        <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
-                            <ArrowRight className="w-4 h-4 text-primary" />
+                  <div className="p-3 sm:p-4 bg-[#0F0F11] border-t border-white/5">
+                    <div className="h-10 sm:h-12 bg-[#1C1C1E] rounded-full border border-white/5 flex items-center px-4 justify-between opacity-50">
+                        <span className="text-xs sm:text-sm text-muted-foreground truncate">Type a command...</span>
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
                         </div>
                     </div>
                   </div>
