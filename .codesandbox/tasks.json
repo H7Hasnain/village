@@ -1,0 +1,17 @@
+{
+  "tasks": {
+    "start": {
+      "name": "Start Dev Server",
+      "command": "npm run dev",
+      "runAtStart": true,
+      "preview": {
+        "port": 3000
+      }
+    },
+    "build": {
+      "name": "Build Project",
+      "command": "npm run build",
+      "runAtStart": false
+    }
+  }
+}
