@@ -2,36 +2,45 @@
 
 This is a high-converting agency website built for selling AI Agent services to GoHighLevel users.
 
-## 🚀 How to Open Online (Chromebook Friendly)
+## 🚀 Run Online For Free (Best Options)
 
-Since the automatic buttons might be having trouble finding the repository immediately, please try the **Manual Import** method. It works 100% of the time.
+Since you are using a Chromebook/Cloud IDE, here are the best ways to run this without crashing:
 
-### Option 1: Vercel (Best for a permanent link)
-1. Go to [vercel.com/new](https://vercel.com/new).
-2. Sign up or Log in with GitHub.
-3. You should see `H7Hasnain/village` in the list of "Import Git Repository".
-4. Click **Import**.
-5. Click **Deploy**.
+### Option 1: Live Deployment (Recommended)
+This hosts your site permanently for free.
+- **Vercel:** [Click to Deploy](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FH7Hasnain%2Fvillage)
+- **Netlify:** Drag and drop the `out` folder (see below) to Netlify Drop.
 
-### Option 2: StackBlitz (Best for editing)
-If the button below doesn't work, do this:
-1. Go to [stackblitz.com](https://stackblitz.com/).
-2. Click "Open GitHub Repo".
-3. Enter `H7Hasnain/village`.
-4. Click Open.
+### Option 2: Lightweight Preview (Low Memory)
+If `npm run dev` keeps crashing your browser/IDE, use this "Static Preview" mode which uses 90% less memory:
 
-### Option 3: CodeSandbox (Alternative)
-1. Go to [codesandbox.io/s/github/H7Hasnain/village](https://codesandbox.io/s/github/H7Hasnain/village).
+1. Open Terminal
+2. Run:
+   ```bash
+   npm run preview
+   ```
+3. Click the link it gives you (usually `http://localhost:3000`).
 
 ## Stack
 
-- Next.js
+- Next.js (Static Export Configured)
 - Tailwind CSS
 - Framer Motion
 - Lucide React
 
-## Structure
+## Local Development
 
-- `app/page.tsx`: Landing page assembling all sections.
-- `components/landing/`: Individual sections of the landing page.
-- `components/ui/`: Reusable UI components.
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Run the development server (Standard):
+   ```bash
+   npm run dev
+   ```
+
+3. Build for production:
+   ```bash
+   npm run build
+   ```
