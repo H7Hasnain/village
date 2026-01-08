@@ -2,7 +2,7 @@
   "tasks": {
     "start": {
       "name": "Start Static Server",
-      "command": "npm install && npm run build && npx serve@latest out",
+      "command": "npm install && npm run build && npx -y serve@latest out",
       "runAtStart": true,
       "preview": {
         "port": 3000
