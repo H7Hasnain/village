@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Check, Info } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { ROICalculatorModal } from '@/components/ui/ROICalculatorModal';
 
 const plans = [
   {
@@ -50,9 +51,12 @@ const plans = [
 
 export function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
+  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
   return (
     <section className="py-32 bg-black border-t border-white/5 relative overflow-hidden">
+      <ROICalculatorModal isOpen={isCalculatorOpen} onClose={() => setIsCalculatorOpen(false)} />
+
       {/* Background Gradients */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-blue-900/10 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -143,10 +147,15 @@ export function Pricing() {
         
         {/* ROI Calculator Teaser */}
         <div className="mt-20 text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-zinc-400">
-                <Info className="w-4 h-4" />
-                <span>Not sure which plan? <a href="#" className="text-blue-400 hover:underline">Calculate your ROI</a></span>
-            </div>
+            <motion.button 
+                onClick={() => setIsCalculatorOpen(true)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-zinc-400 hover:bg-white/10 hover:text-white transition-all cursor-pointer group"
+            >
+                <Info className="w-4 h-4 group-hover:text-blue-400 transition-colors" />
+                <span>Not sure which plan? <span className="text-blue-400 group-hover:underline">Calculate your ROI</span></span>
+            </motion.button>
         </div>
       </div>
     </section>
