@@ -8,7 +8,7 @@
     "start": "npx serve@latest out",
     "lint": "eslint",
     "preview": "npm run build && npx serve@latest out",
-    "sandbox": "NODE_OPTIONS='--max-old-space-size=4096' next dev"
+    "sandbox": "npm install && NODE_OPTIONS='--max-old-space-size=4096' next dev"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
