@@ -65,40 +65,38 @@ export function Hero() {
       {/* --- BACKGROUND LAYERS --- */}
       <div className="absolute inset-0 z-0">
         {/* 1. Base Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B1E] via-[#1A0F2E] to-[#2D1B3D]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0B1E] via-[#1A0F2E] to-[#2D1B3D]" />
         
         {/* 2. Animated Mesh Gradient (Orbs) */}
-        <div className="absolute inset-0 overflow-hidden opacity-40">
+        <div className="absolute inset-0 overflow-hidden opacity-60">
             <motion.div 
-                animate={{ x: [-50, 50, -50], y: [-20, 20, -20] }}
+                animate={{ x: [-50, 50, -50], y: [-20, 20, -20], scale: [1, 1.1, 1] }}
                 transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[-10%] left-[20%] w-[800px] h-[800px] bg-purple-600/30 rounded-full blur-[120px]" 
+                className="absolute top-[-10%] left-[20%] w-[800px] h-[800px] bg-purple-600/20 rounded-full blur-[120px] mix-blend-screen" 
             />
             <motion.div 
-                animate={{ x: [50, -50, 50], y: [30, -30, 30] }}
+                animate={{ x: [50, -50, 50], y: [30, -30, 30], scale: [1, 1.2, 1] }}
                 transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-[-10%] right-[10%] w-[600px] h-[600px] bg-blue-600/30 rounded-full blur-[120px]" 
+                className="absolute bottom-[-10%] right-[10%] w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] mix-blend-screen" 
             />
             <motion.div 
-                animate={{ scale: [1, 1.2, 1] }}
+                animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.5, 0.3] }}
                 transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[40%] left-[50%] w-[400px] h-[400px] bg-pink-500/20 rounded-full blur-[100px]" 
+                className="absolute top-[40%] left-[50%] w-[500px] h-[500px] bg-pink-500/10 rounded-full blur-[100px] mix-blend-screen" 
             />
         </div>
 
         {/* 3. Noise Texture Overlay */}
-        <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'url("/noise.png")', backgroundRepeat: 'repeat' }} />
-        {/* Fallback CSS Noise if image missing */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")', backgroundRepeat: 'repeat' }} />
 
         {/* 4. Radial Spotlight (Mouse Responsive) */}
         <motion.div 
             style={{ x: spotlightX, y: spotlightY }}
-            className="absolute top-0 left-0 w-[1000px] h-[1000px] bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-full blur-[100px] pointer-events-none -translate-x-1/2 -translate-y-1/2 mix-blend-screen"
+            className="absolute top-0 left-0 w-[1200px] h-[1200px] bg-gradient-to-r from-purple-500/10 to-cyan-500/10 rounded-full blur-[100px] pointer-events-none -translate-x-1/2 -translate-y-1/2 mix-blend-screen"
         />
 
         {/* 5. Geometric Wireframe Grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_70%,transparent_100%)] perspective-1000 transform-gpu rotate-x-12 scale-110 opacity-30" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_70%,transparent_100%)] perspective-1000 transform-gpu rotate-x-12 scale-110 opacity-40" />
 
         {/* 6. Particle Field */}
         <div className="absolute inset-0 z-0">
@@ -112,8 +110,8 @@ export function Hero() {
                         opacity: p.opacity,
                     }}
                     animate={{
-                        y: [null, parseFloat(p.y) - 20 + "%"], // Gentle drift up
-                        opacity: [p.opacity, p.opacity * 0.5, p.opacity]
+                        y: [null, parseFloat(p.y) - 30 + "%"], // Drift up
+                        opacity: [p.opacity, p.opacity * 0.8, p.opacity]
                     }}
                     transition={{
                         duration: p.duration,
@@ -123,15 +121,15 @@ export function Hero() {
                     style={{
                         width: p.size + "px",
                         height: p.size + "px",
-                        backgroundColor: p.id % 2 === 0 ? '#A855F7' : '#3B82F6', // Cyan/Purple mix
-                        boxShadow: `0 0 ${p.size * 2}px ${p.id % 2 === 0 ? '#A855F7' : '#3B82F6'}`
+                        backgroundColor: p.id % 2 === 0 ? '#A855F7' : '#22D3EE',
+                        boxShadow: `0 0 ${p.size * 3}px ${p.id % 2 === 0 ? '#A855F7' : '#22D3EE'}`
                     }}
                 />
             ))}
         </div>
 
-        {/* 7. Volumetric Light Rays (CSS Gradient Trick) */}
-        <div className="absolute -top-20 right-0 w-[800px] h-[800px] bg-gradient-to-b from-blue-500/10 to-transparent rotate-45 blur-3xl pointer-events-none" />
+        {/* 7. Volumetric Light Rays */}
+        <div className="absolute -top-40 -right-20 w-[800px] h-[800px] bg-gradient-to-b from-cyan-500/10 to-transparent rotate-[30deg] blur-[100px] pointer-events-none" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -145,7 +143,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#1A0F2E]/80 border border-purple-500/30 mb-8 backdrop-blur-md relative overflow-hidden group cursor-default shadow-[0_0_20px_-5px_rgba(168,85,247,0.4)]"
+              className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#1A0F2E]/80 border border-purple-500/30 mb-8 backdrop-blur-md relative overflow-hidden group cursor-default shadow-[0_0_25px_-5px_rgba(168,85,247,0.5)]"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:animate-[shimmer_2s_infinite]" />
               <span className="relative flex h-2.5 w-2.5">
@@ -160,13 +158,13 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-5xl sm:text-6xl lg:text-7xl xl:text-[80px] font-extrabold tracking-tight text-white mb-8 leading-[1.1] drop-shadow-xl"
+              className="text-5xl sm:text-6xl lg:text-7xl xl:text-[80px] font-extrabold tracking-tight text-white mb-8 leading-[1.1] drop-shadow-2xl"
             >
               Control Your Pipeline <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 animate-gradient-x relative">
                 With AI That Works
-                {/* Glow Bloom */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400/30 via-blue-500/30 to-purple-500/30 blur-2xl opacity-50 -z-10" />
+                {/* Intense Bloom Effect */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400/20 via-blue-500/20 to-purple-500/20 blur-2xl opacity-70 -z-10" />
               </span>
             </motion.h1>
             
@@ -187,17 +185,17 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.25 }}
               className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-6 mb-10 text-xs md:text-sm text-[#94A3B8]"
             >
-              <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 md:bg-transparent md:border-0 md:px-0 md:py-0">
+              <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-sm md:bg-transparent md:border-0 md:px-0 md:py-0">
                 <Zap className="w-4 h-4 text-cyan-400 fill-cyan-400/20" />
                 <span>Responds in &lt;2s</span>
               </div>
               <div className="w-1 h-1 bg-[#64748B] rounded-full hidden md:block" />
-              <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 md:bg-transparent md:border-0 md:px-0 md:py-0">
+              <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-sm md:bg-transparent md:border-0 md:px-0 md:py-0">
                 <Shield className="w-4 h-4 text-purple-400 fill-purple-400/20" />
                 <span>Bank-level encryption</span>
               </div>
               <div className="w-1 h-1 bg-[#64748B] rounded-full hidden md:block" />
-              <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 md:bg-transparent md:border-0 md:px-0 md:py-0">
+              <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-sm md:bg-transparent md:border-0 md:px-0 md:py-0">
                 <CheckCircle2 className="w-4 h-4 text-blue-400" />
                 <span>No code required</span>
               </div>
@@ -275,18 +273,46 @@ export function Hero() {
               transition={{ duration: 1, type: "spring" }}
               className="relative z-20 transform scale-90 sm:scale-100"
             >
-                {/* Floating Context Cards with NEURAL LINES */}
+                {/* Floating Context Cards with ANIMATED NEURAL LINES */}
                 <div className="absolute inset-0 pointer-events-none hidden md:block">
                     {/* SVG Lines connecting cards to phone center */}
-                    <svg className="absolute inset-0 w-full h-full visible overflow-visible opacity-30">
-                        <line x1="80%" y1="10%" x2="50%" y2="50%" stroke="url(#lineGradient)" strokeWidth="1" strokeDasharray="4 4" />
-                        <line x1="10%" y1="50%" x2="50%" y2="50%" stroke="url(#lineGradient)" strokeWidth="1" strokeDasharray="4 4" />
-                        <line x1="80%" y1="90%" x2="50%" y2="50%" stroke="url(#lineGradient)" strokeWidth="1" strokeDasharray="4 4" />
+                    <svg className="absolute inset-0 w-full h-full visible overflow-visible opacity-40">
+                        {/* Line to Top Right (Pipeline) */}
+                        <path 
+                            d="M 80% 10% Q 65% 10% 50% 40%" 
+                            fill="none" 
+                            stroke="url(#lineGradient1)" 
+                            strokeWidth="1.5" 
+                            className="animate-pulse"
+                        />
+                        {/* Line to Left (Quick Action) */}
+                        <path 
+                            d="M 10% 50% Q 30% 50% 50% 50%" 
+                            fill="none" 
+                            stroke="url(#lineGradient2)" 
+                            strokeWidth="1.5" 
+                            className="animate-pulse"
+                        />
+                        {/* Line to Bottom Right (Alert) */}
+                        <path 
+                            d="M 80% 90% Q 65% 90% 50% 60%" 
+                            fill="none" 
+                            stroke="url(#lineGradient3)" 
+                            strokeWidth="1.5" 
+                            className="animate-pulse"
+                        />
                         <defs>
-                            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stopColor="#A855F7" stopOpacity="0" />
-                                <stop offset="50%" stopColor="#3B82F6" stopOpacity="1" />
-                                <stop offset="100%" stopColor="#A855F7" stopOpacity="0" />
+                            <linearGradient id="lineGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stopColor="#22D3EE" stopOpacity="0" />
+                                <stop offset="100%" stopColor="#22D3EE" stopOpacity="1" />
+                            </linearGradient>
+                            <linearGradient id="lineGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stopColor="#FACC15" stopOpacity="0" />
+                                <stop offset="100%" stopColor="#FACC15" stopOpacity="1" />
+                            </linearGradient>
+                            <linearGradient id="lineGradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stopColor="#F472B6" stopOpacity="0" />
+                                <stop offset="100%" stopColor="#F472B6" stopOpacity="1" />
                             </linearGradient>
                         </defs>
                     </svg>
@@ -319,13 +345,16 @@ export function Hero() {
                   color="pink"
                 />
 
-                {/* 3D Phone Mockup */}
-                <div className="relative w-[300px] sm:w-[380px] mx-auto h-[600px] sm:h-[700px] bg-[#0F0F11] rounded-[40px] sm:rounded-[50px] border-[6px] sm:border-[8px] border-[#1C1C1E] shadow-2xl overflow-hidden transform-gpu group">
-                    {/* Rim Light (Cyan Glow) */}
-                    <div className="absolute -inset-1 bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 rounded-[46px] blur-md opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* 3D Phone Mockup with PREMIUM BEZEL */}
+                <div className="relative w-[300px] sm:w-[380px] mx-auto h-[600px] sm:h-[700px] bg-[#0F0F11] rounded-[40px] sm:rounded-[50px] border-[6px] sm:border-[8px] border-[#1C1C1E] shadow-2xl overflow-hidden transform-gpu group ring-1 ring-white/10">
+                    {/* Bezel Reflection */}
+                    <div className="absolute inset-0 rounded-[32px] sm:rounded-[42px] ring-1 ring-white/20 pointer-events-none z-50" />
+                    
+                    {/* Rim Light (Cyan/Purple Gradient Glow) */}
+                    <div className="absolute -inset-[2px] bg-gradient-to-tr from-cyan-500/40 via-purple-500/40 to-blue-500/40 rounded-[48px] blur-lg opacity-60 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
                     
                     {/* Dynamic Reflection */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none z-50 rounded-[32px] sm:rounded-[42px] mix-blend-overlay" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none z-50 rounded-[32px] sm:rounded-[42px] mix-blend-overlay opacity-50" />
                     
                     {/* Screen Content */}
                     <div className="absolute inset-0 bg-[#050510] flex flex-col z-10">
@@ -348,7 +377,10 @@ export function Hero() {
                             </div>
                             <div>
                                 <h3 className="text-white font-bold text-sm sm:text-base">AI Operator</h3>
-                                <p className="text-[10px] sm:text-xs text-cyan-400 font-medium tracking-wide">Processing 3 conversations...</p>
+                                <p className="text-[10px] sm:text-xs text-cyan-400 font-medium tracking-wide flex items-center gap-1">
+                                    <Sparkles className="w-3 h-3 animate-pulse" />
+                                    Processing 3 conversations...
+                                </p>
                             </div>
                         </div>
 
@@ -359,7 +391,7 @@ export function Hero() {
                                 initial={{ y: 20, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 1.2 }}
-                                className="bg-[#1A1A2E]/80 backdrop-blur-md border-l-4 border-cyan-500 rounded-lg p-3 sm:p-4 shadow-lg border-y border-r border-white/5"
+                                className="bg-[#1A1A2E]/80 backdrop-blur-md border-l-4 border-cyan-500 rounded-lg p-3 sm:p-4 shadow-lg border-y border-r border-white/5 hover:bg-[#1A1A2E] transition-colors"
                             >
                                 <div className="flex justify-between items-start mb-2">
                                     <span className="text-[10px] sm:text-xs font-bold text-white uppercase tracking-wider">Pipeline Update</span>
