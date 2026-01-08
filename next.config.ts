@@ -1,8 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
-  output: 'export', // Enables static HTML export for free hosting on GitHub Pages/Netlify
+  // Disable strict mode to save memory in dev
+  reactStrictMode: false,
+  
+  // Static export for free hosting
+  output: 'export',
   
   // Optimization for low-memory environments
   typescript: {
@@ -12,9 +15,18 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   
-  // Required for static export if you use next/image (we aren't currently, but good to have)
+  // Disable source maps in production to save build memory
+  productionBrowserSourceMaps: false,
+  
+  // Required for static export
   images: {
     unoptimized: true,
+  },
+  
+  // Experimental options to reduce memory usage
+  experimental: {
+    // optimizeCss: true, // sometimes causes issues, keeping off for safety
+    // scrollRestoration: true,
   },
 };
 

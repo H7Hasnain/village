@@ -2,7 +2,7 @@
   "tasks": {
     "start": {
       "name": "Start Dev Server",
-      "command": "npm run dev",
+      "command": "npm run sandbox",
       "runAtStart": true,
       "preview": {
         "port": 3000
