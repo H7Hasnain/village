@@ -136,14 +136,14 @@ export function Hero() {
         <div className="flex flex-col lg:flex-row items-center gap-16 xl:gap-24">
           
           {/* --- LEFT SIDE: TYPOGRAPHY & MESSAGING --- */}
-          <div className="flex-1 text-center lg:text-left z-10 max-w-2xl lg:max-w-none mx-auto lg:mx-0">
+          <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left z-10 max-w-2xl lg:max-w-none mx-auto lg:mx-0 gap-8">
             
             {/* Badge */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#1A0F2E]/80 border border-purple-500/30 mb-8 backdrop-blur-md relative overflow-hidden group cursor-default shadow-[0_0_25px_-5px_rgba(168,85,247,0.5)]"
+              className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#1A0F2E]/80 border border-purple-500/30 backdrop-blur-md relative overflow-hidden group cursor-default shadow-[0_0_25px_-5px_rgba(168,85,247,0.5)]"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:animate-[shimmer_2s_infinite]" />
               <span className="relative flex h-2.5 w-2.5">
@@ -158,7 +158,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-5xl sm:text-6xl lg:text-7xl xl:text-[80px] font-extrabold tracking-tight text-white mb-8 leading-[1.1] drop-shadow-2xl"
+              className="text-5xl sm:text-6xl lg:text-7xl xl:text-[80px] font-extrabold tracking-tight text-white leading-[1.1] drop-shadow-2xl"
             >
               Control Your Pipeline <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 animate-gradient-x relative">
@@ -173,29 +173,29 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg sm:text-xl text-[#94A3B8] mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal"
+              className="text-lg sm:text-xl text-[#94A3B8] max-w-xl leading-relaxed font-normal"
             >
               Stop drowning in dashboards. Our <strong className="text-white">AI agents</strong> manage your leads, deals, and workflows through <strong className="text-white">WhatsApp, Telegram, or SMS</strong>—like having a <strong className="text-white">$200K/year</strong> operations manager in your pocket.
             </motion.p>
 
-            {/* Trust Indicators */}
+            {/* Trust Indicators - Aligned with text */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-6 mb-10 text-xs md:text-sm text-[#94A3B8]"
+              className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-6 text-sm text-[#94A3B8] font-medium"
             >
-              <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-sm md:bg-transparent md:border-0 md:px-0 md:py-0">
+              <div className="flex items-center gap-2.5">
                 <Zap className="w-4 h-4 text-cyan-400 fill-cyan-400/20" />
                 <span>Responds in &lt;2s</span>
               </div>
-              <div className="w-1 h-1 bg-[#64748B] rounded-full hidden md:block" />
-              <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-sm md:bg-transparent md:border-0 md:px-0 md:py-0">
+              <div className="w-1 h-1 bg-[#64748B] rounded-full hidden md:block opacity-50" />
+              <div className="flex items-center gap-2.5">
                 <Shield className="w-4 h-4 text-purple-400 fill-purple-400/20" />
                 <span>Bank-level encryption</span>
               </div>
-              <div className="w-1 h-1 bg-[#64748B] rounded-full hidden md:block" />
-              <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-sm md:bg-transparent md:border-0 md:px-0 md:py-0">
+              <div className="w-1 h-1 bg-[#64748B] rounded-full hidden md:block opacity-50" />
+              <div className="flex items-center gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-blue-400" />
                 <span>No code required</span>
               </div>
@@ -206,7 +206,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12 w-full sm:w-auto"
+              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
             >
                 <Button 
                   size="lg" 
@@ -241,7 +241,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2"
             >
               <div className="flex -space-x-3">
                 {[1,2,3,4,5].map((i) => (
