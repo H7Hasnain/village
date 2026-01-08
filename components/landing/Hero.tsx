@@ -6,6 +6,17 @@ import { Button } from '@/components/ui/Button';
 import { ArrowRight, Zap, Play, Check, Clock, PlayCircle } from 'lucide-react';
 import { VideoModal } from '@/components/ui/VideoModal';
 
+// Define Particle type
+type Particle = {
+  id: number;
+  x: string;
+  y: string;
+  opacity: number;
+  scale: number;
+  duration: number;
+  size: number;
+};
+
 const fullChatHistory = [
   { 
     id: 1,
@@ -62,7 +73,21 @@ export function Hero() {
   const [isTyping, setIsTyping] = useState(true);
   const [clickCount, setClickCount] = useState(0);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [particles, setParticles] = useState<Particle[]>([]);
   const chatContainerRef = useRef<HTMLDivElement>(null);
+
+  // Initialize particles on client only to avoid hydration mismatch
+  useEffect(() => {
+    setParticles([...Array(20)].map((_, i) => ({
+      id: i,
+      x: Math.random() * 100 + "%",
+      y: Math.random() * 100 + "%",
+      opacity: Math.random() * 0.5 + 0.2,
+      scale: Math.random() * 0.5 + 0.5,
+      duration: Math.random() * 10 + 10,
+      size: Math.random() * 4 + 2
+    })));
+  }, []);
 
   // Auto-scroll to bottom of chat
   useEffect(() => {
@@ -110,28 +135,28 @@ export function Hero() {
         
         {/* Particles */}
         <div className="absolute inset-0 opacity-20">
-            {[...Array(20)].map((_, i) => (
+            {particles.map((p) => (
                 <motion.div
-                    key={i}
+                    key={p.id}
                     className="absolute bg-white rounded-full"
                     initial={{
-                        x: Math.random() * 100 + "%",
-                        y: Math.random() * 100 + "%",
-                        opacity: Math.random() * 0.5 + 0.2,
-                        scale: Math.random() * 0.5 + 0.5
+                        x: p.x,
+                        y: p.y,
+                        opacity: p.opacity,
+                        scale: p.scale
                     }}
                     animate={{
-                        y: [null, Math.random() * -100 + "%"],
+                        y: [null, parseFloat(p.y) - 100 + "%"], // Simple upward movement
                         opacity: [null, 0]
                     }}
                     transition={{
-                        duration: Math.random() * 10 + 10,
+                        duration: p.duration,
                         repeat: Infinity,
                         ease: "linear"
                     }}
                     style={{
-                        width: Math.random() * 4 + "px",
-                        height: Math.random() * 4 + "px",
+                        width: p.size + "px",
+                        height: p.size + "px",
                     }}
                 />
             ))}
