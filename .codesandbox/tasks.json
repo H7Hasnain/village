@@ -1,22 +1,12 @@
 {
   "tasks": {
-    "install": {
-      "name": "Install Dependencies",
-      "command": "npm install",
-      "runAtStart": true
-    },
     "start": {
-      "name": "Start Dev Server",
-      "command": "npm install && npm run sandbox",
+      "name": "Start Static Server",
+      "command": "npm install && npm run build && npx serve@latest out",
       "runAtStart": true,
       "preview": {
         "port": 3000
       }
-    },
-    "build": {
-      "name": "Build Project",
-      "command": "npm run build",
-      "runAtStart": false
     }
   }
 }

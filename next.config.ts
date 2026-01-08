@@ -1,13 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Disable strict mode to save memory in dev
+  // Completely disable strict mode and dev indicators to reduce load
   reactStrictMode: false,
+  devIndicators: false,
   
-  // Static export for free hosting
+  // Static export is the most stable for free tier sandboxes
   output: 'export',
   
-  // Optimization for low-memory environments
+  // Ignore all build errors to ensure it always renders something
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -15,18 +16,11 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   
-  // Disable source maps in production to save build memory
+  // Disable heavy features
   productionBrowserSourceMaps: false,
   
-  // Required for static export
   images: {
     unoptimized: true,
-  },
-  
-  // Experimental options to reduce memory usage
-  experimental: {
-    // optimizeCss: true, // sometimes causes issues, keeping off for safety
-    // scrollRestoration: true,
   },
 };
 
