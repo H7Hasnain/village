@@ -1,42 +1,55 @@
 # GHL AI Agency Website
 
-## 🌐 Deploy Online (Simplest Method)
+This is a high-converting agency website built for selling AI Agent services to GoHighLevel users.
 
-**Step 1:** Click the button below to deploy to Vercel (Free & Fast).
+## 🚀 How to Run (Choose Your Method)
+
+### 1️⃣ Run Locally on Your PC (VS Code) - Recommended
+Follow these steps to run the project on your own computer:
+
+1.  **Clone the Repository:**
+    ```bash
+    git clone https://github.com/H7Hasnain/village.git
+    cd village
+    ```
+
+2.  **Install Dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Run Development Server:**
+    ```bash
+    npm run dev
+    ```
+    - Open `http://localhost:3000` in your browser.
+    - Edits will update instantly.
+
+### 2️⃣ Run Online (CodeSandbox / Cloud)
+Use this if you are on a Chromebook or don't want to install Node.js locally.
+
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=for-the-badge&logo=codesandbox)](https://githubbox.com/H7Hasnain/village)
+
+- **Note:** The online version runs in "Static Mode" for stability. It may take 1-2 minutes to build initially.
+
+### 3️⃣ Deploy Live (Free Hosting)
+To put your site on the internet for the world to see:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FH7Hasnain%2Fvillage)
 
-**Step 2:**
-1. Log in with GitHub.
-2. You will see `H7Hasnain/village`. Click **Import**.
-3. Click **Deploy**.
-4. Wait ~1 minute. You will get a live URL (e.g., `village.vercel.app`).
-
 ---
 
-## 💻 Run in CodeSandbox (Cloud IDE)
+## 🛠️ Troubleshooting
 
-If you want to edit the code online, follow these steps to avoid errors:
-
-1. **Click the button below:**
-   [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=for-the-badge&logo=codesandbox)](https://githubbox.com/H7Hasnain/village)
-
-2. **Wait for Installation:**
-   - The environment will automatically start installing dependencies. This takes ~1-2 minutes.
-   - Watch the "Terminal" tab at the bottom.
-
-3. **If You See "Module Not Found" or "502 Error":**
-   - Don't panic! It just means the installation got interrupted.
-   - Click the **Terminal** tab at the bottom.
-   - Type this command and press Enter:
-     ```bash
-     npm run clean
-     ```
-   - This will wipe everything and reinstall freshly. Then the site will open automatically.
+**If you see "Module Not Found" or weird errors:**
+Run this "Magic Fix" command in your terminal (works on PC & Cloud):
+```bash
+npm run clean
+```
+Then try running `npm run dev` again.
 
 ## Stack
-
-- Next.js 15 (Static Export)
+- Next.js 15
 - Tailwind CSS v4
 - Framer Motion
 - Lucide React
