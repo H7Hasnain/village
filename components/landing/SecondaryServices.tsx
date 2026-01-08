@@ -1,27 +1,24 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Brain, Search, FileText, Zap, Phone, Activity, User, Mic } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Brain, Search, FileText, Zap, Phone, Activity, User, Mic, PhoneOff, MicOff, Volume2, Grid } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
 export function InternalAISection() {
   return (
     <section className="py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
+      {/* ... (Keep InternalAISection as is) ... */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent opacity-50" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
           
-          {/* Visual: Neural Network & Holographic Brain */}
           <div className="flex-1 w-full order-2 lg:order-1">
              <div className="relative aspect-square max-w-lg mx-auto">
                 <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-transparent to-blue-500/10 rounded-full blur-3xl animate-pulse" />
                 
-                {/* Glass Card Container */}
                 <div className="relative h-full bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-3xl p-8 flex flex-col overflow-hidden shadow-2xl">
-                    
-                    {/* Simulated Search Interface */}
                     <div className="mb-8 relative z-20">
                         <div className="bg-black/40 border border-white/10 rounded-xl p-4 flex items-center gap-3 shadow-inner">
                             <Search className="w-5 h-5 text-purple-400" />
@@ -32,7 +29,6 @@ export function InternalAISection() {
                             </div>
                         </div>
                         
-                        {/* Floating Result Card */}
                         <motion.div 
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -55,13 +51,10 @@ export function InternalAISection() {
                         </motion.div>
                     </div>
 
-                    {/* Animated Nodes Background */}
                     <div className="absolute inset-0 z-0">
-                        {/* Central Brain Icon */}
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-purple-500/10 rounded-full flex items-center justify-center blur-md animate-pulse"></div>
                         <Brain className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 text-purple-500 opacity-80" />
                         
-                        {/* Orbiting Nodes */}
                         {[...Array(6)].map((_, i) => (
                             <motion.div
                                 key={i}
@@ -80,7 +73,6 @@ export function InternalAISection() {
                             />
                         ))}
                         
-                        {/* Connecting Lines (SVG) */}
                         <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20">
                             {[...Array(6)].map((_, i) => (
                                 <line 
@@ -149,6 +141,116 @@ export function InternalAISection() {
   );
 }
 
+function VoicePhone() {
+    const [seconds, setSeconds] = useState(12);
+    const [transcript, setTranscript] = useState("");
+    const fullText = "Yes, I can definitely schedule a viewing for you on Tuesday. Does 2 PM work?";
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setSeconds(s => s + 1);
+        }, 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+    useEffect(() => {
+        let currentIndex = 0;
+        const typingInterval = setInterval(() => {
+            if (currentIndex <= fullText.length) {
+                setTranscript(fullText.slice(0, currentIndex));
+                currentIndex++;
+            } else {
+                clearInterval(typingInterval);
+            }
+        }, 50); // Typing speed
+        return () => clearInterval(typingInterval);
+    }, []);
+
+    const formatTime = (totalSeconds: number) => {
+        const mins = Math.floor(totalSeconds / 60);
+        const secs = totalSeconds % 60;
+        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    };
+
+    return (
+        <div className="relative w-80 h-[550px] bg-black border-[8px] border-zinc-800 rounded-[3rem] shadow-2xl overflow-hidden transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500">
+            {/* Screen Content */}
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black flex flex-col items-center">
+                {/* Status Bar */}
+                <div className="w-full px-6 pt-4 flex justify-between items-center text-[10px] text-white/60">
+                    <span>9:41</span>
+                    <div className="flex gap-1">
+                        <div className="w-3 h-3 rounded-full bg-white/20"></div>
+                        <div className="w-3 h-3 rounded-full bg-white/20"></div>
+                    </div>
+                </div>
+
+                {/* Call Info */}
+                <div className="mt-8 text-center">
+                    <h3 className="text-2xl font-bold text-white mb-1">AI Assistant</h3>
+                    <p className="text-green-400 text-sm font-medium animate-pulse">00:{seconds < 10 ? `0${seconds}` : seconds}</p>
+                </div>
+
+                {/* Avatar with Ripples */}
+                <div className="relative mt-12 mb-12">
+                    <div className="absolute inset-0 bg-orange-500/30 rounded-full animate-ping opacity-20"></div>
+                    <div className="absolute inset-[-10px] bg-orange-500/20 rounded-full animate-pulse opacity-30"></div>
+                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-zinc-800 to-zinc-900 border border-white/10 flex items-center justify-center relative z-10 shadow-2xl">
+                        <User className="w-10 h-10 text-white/50" />
+                        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 border-4 border-black rounded-full"></div>
+                    </div>
+                </div>
+
+                {/* Waveform */}
+                <div className="w-full px-8 mb-8">
+                    <div className="flex items-center justify-center gap-1 h-8 w-full">
+                        {[...Array(16)].map((_, i) => (
+                            <motion.div
+                                key={i}
+                                className="w-1 bg-gradient-to-t from-orange-600 to-orange-400 rounded-full"
+                                animate={{ height: [4, Math.random() * 24 + 4, 4] }}
+                                transition={{ duration: 0.4, repeat: Infinity, repeatDelay: 0 }}
+                            />
+                        ))}
+                    </div>
+                </div>
+
+                {/* Transcript Card (Floating Up) */}
+                <motion.div 
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    className="w-[90%] bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 mb-6"
+                >
+                    <div className="flex items-center gap-2 mb-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                        <span className="text-[10px] text-zinc-400 uppercase tracking-wide">Live Transcript</span>
+                    </div>
+                    <p className="text-sm text-white leading-relaxed font-medium">
+                        "{transcript}"
+                        <span className="inline-block w-0.5 h-4 bg-orange-500 ml-0.5 align-middle animate-pulse"></span>
+                    </p>
+                </motion.div>
+
+                {/* Call Controls */}
+                <div className="mt-auto mb-8 w-full px-8 flex justify-between items-center">
+                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md">
+                        <MicOff className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md">
+                        <Grid className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md">
+                        <Volume2 className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="w-14 h-14 rounded-full bg-red-500 flex items-center justify-center shadow-lg shadow-red-500/30">
+                        <PhoneOff className="w-6 h-6 text-white fill-current" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export function VoiceAISection() {
   return (
     <section className="py-32 bg-[#080808] relative overflow-hidden">
@@ -214,55 +316,7 @@ export function VoiceAISection() {
           
           {/* Visual: Animated Waveform & Phone */}
           <div className="flex-1 w-full flex justify-center">
-             <div className="relative w-80 h-[500px] bg-black border-[8px] border-zinc-800 rounded-[3rem] shadow-2xl overflow-hidden transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500">
-                {/* Screen Content */}
-                <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 to-black p-6 flex flex-col items-center pt-16">
-                    <div className="w-20 h-20 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center mb-4 relative">
-                        <User className="w-10 h-10 text-zinc-500" />
-                        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 border-4 border-black rounded-full"></div>
-                    </div>
-                    
-                    <h3 className="text-2xl font-bold text-white mb-1">Incoming Call</h3>
-                    <p className="text-orange-400 font-medium mb-8">AI Receptionist Active</p>
-                    
-                    {/* Animated Waveform */}
-                    <div className="flex items-center justify-center gap-1 h-12 w-full mb-8">
-                        {[...Array(12)].map((_, i) => (
-                            <motion.div
-                                key={i}
-                                className="w-1.5 bg-orange-500 rounded-full"
-                                animate={{ height: [10, Math.random() * 40 + 10, 10] }}
-                                transition={{ duration: 0.5, repeat: Infinity, repeatDelay: Math.random() * 0.2 }}
-                            />
-                        ))}
-                    </div>
-                    
-                    {/* Live Transcript */}
-                    <div className="w-full bg-white/5 rounded-xl p-4 border border-white/5">
-                        <p className="text-xs text-zinc-500 mb-2 uppercase tracking-wide">Live Transcript</p>
-                        <p className="text-sm text-white leading-relaxed typing-effect">
-                            "Yes, I can definitely schedule a viewing for you on Tuesday. Does 2 PM work?"
-                        </p>
-                    </div>
-                    
-                    {/* Floating UI Card - Outside Phone but layered */}
-                    <motion.div 
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.5 }}
-                        className="absolute bottom-20 -right-24 bg-[#1A1A1A] border border-orange-500/30 rounded-xl p-4 shadow-2xl w-48 z-20 backdrop-blur-xl"
-                    >
-                        <div className="flex items-center gap-2 mb-2">
-                            <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                            <span className="text-xs font-bold text-white">Lead Qualified</span>
-                        </div>
-                        <div className="h-1 w-full bg-zinc-800 rounded-full overflow-hidden">
-                            <div className="h-full bg-orange-500 w-[80%]"></div>
-                        </div>
-                        <p className="text-[10px] text-zinc-400 mt-1">High Intent Score</p>
-                    </motion.div>
-                </div>
-             </div>
+             <VoicePhone />
           </div>
         </div>
       </div>
