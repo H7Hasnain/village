@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/Button';
 export function InternalAISection() {
   return (
     <section className="py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
-      {/* ... (Keep InternalAISection as is) ... */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent opacity-50" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -166,84 +165,93 @@ function VoicePhone() {
         return () => clearInterval(typingInterval);
     }, []);
 
-    const formatTime = (totalSeconds: number) => {
-        const mins = Math.floor(totalSeconds / 60);
-        const secs = totalSeconds % 60;
-        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-    };
-
     return (
-        <div className="relative w-80 h-[550px] bg-black border-[8px] border-zinc-800 rounded-[3rem] shadow-2xl overflow-hidden transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500">
+        <div className="relative w-80 h-[600px] bg-black border-[8px] border-zinc-800 rounded-[3rem] shadow-2xl overflow-hidden transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500">
             {/* Screen Content */}
-            <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black flex flex-col items-center">
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black flex flex-col items-center pb-8">
                 {/* Status Bar */}
-                <div className="w-full px-6 pt-4 flex justify-between items-center text-[10px] text-white/60">
-                    <span>9:41</span>
-                    <div className="flex gap-1">
-                        <div className="w-3 h-3 rounded-full bg-white/20"></div>
-                        <div className="w-3 h-3 rounded-full bg-white/20"></div>
+                <div className="w-full px-6 pt-5 flex justify-between items-center text-[10px] text-white/60">
+                    <span className="font-semibold">9:41</span>
+                    <div className="flex gap-1.5">
+                        <div className="w-3.5 h-2 bg-white/20 rounded-[1px]"></div>
+                        <div className="w-3.5 h-2 bg-white/20 rounded-[1px]"></div>
+                        <div className="w-4 h-2 bg-white/20 rounded-[1px] relative"><div className="absolute inset-0 bg-white/40 w-[60%]"></div></div>
                     </div>
                 </div>
 
                 {/* Call Info */}
-                <div className="mt-8 text-center">
-                    <h3 className="text-2xl font-bold text-white mb-1">AI Assistant</h3>
-                    <p className="text-green-400 text-sm font-medium animate-pulse">00:{seconds < 10 ? `0${seconds}` : seconds}</p>
-                </div>
-
-                {/* Avatar with Ripples */}
-                <div className="relative mt-12 mb-12">
-                    <div className="absolute inset-0 bg-orange-500/30 rounded-full animate-ping opacity-20"></div>
-                    <div className="absolute inset-[-10px] bg-orange-500/20 rounded-full animate-pulse opacity-30"></div>
-                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-zinc-800 to-zinc-900 border border-white/10 flex items-center justify-center relative z-10 shadow-2xl">
-                        <User className="w-10 h-10 text-white/50" />
-                        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 border-4 border-black rounded-full"></div>
-                    </div>
-                </div>
-
-                {/* Waveform */}
-                <div className="w-full px-8 mb-8">
-                    <div className="flex items-center justify-center gap-1 h-8 w-full">
-                        {[...Array(16)].map((_, i) => (
-                            <motion.div
-                                key={i}
-                                className="w-1 bg-gradient-to-t from-orange-600 to-orange-400 rounded-full"
-                                animate={{ height: [4, Math.random() * 24 + 4, 4] }}
-                                transition={{ duration: 0.4, repeat: Infinity, repeatDelay: 0 }}
-                            />
-                        ))}
-                    </div>
-                </div>
-
-                {/* Transcript Card (Floating Up) */}
-                <motion.div 
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    className="w-[90%] bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 mb-6"
-                >
-                    <div className="flex items-center gap-2 mb-2">
+                <div className="mt-8 text-center w-full">
+                    <div className="flex items-center justify-center gap-2 mb-1">
                         <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-                        <span className="text-[10px] text-zinc-400 uppercase tracking-wide">Live Transcript</span>
+                        <span className="text-[10px] uppercase tracking-widest text-zinc-400 font-bold">In Call</span>
                     </div>
-                    <p className="text-sm text-white leading-relaxed font-medium">
-                        "{transcript}"
-                        <span className="inline-block w-0.5 h-4 bg-orange-500 ml-0.5 align-middle animate-pulse"></span>
-                    </p>
-                </motion.div>
+                    <h3 className="text-2xl font-bold text-white tracking-tight">AI Assistant</h3>
+                    <p className="text-white/60 text-sm font-medium font-mono mt-1">00:{seconds < 10 ? `0${seconds}` : seconds}</p>
+                </div>
 
-                {/* Call Controls */}
-                <div className="mt-auto mb-8 w-full px-8 flex justify-between items-center">
-                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md">
-                        <MicOff className="w-5 h-5 text-white" />
+                {/* Main Content Area - Flexible Spacing */}
+                <div className="flex-1 w-full flex flex-col justify-center items-center relative">
+                    
+                    {/* Avatar with Ripples */}
+                    <div className="relative mb-8">
+                        <div className="absolute inset-0 bg-orange-500/20 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+                        <div className="absolute inset-[-12px] bg-orange-500/10 rounded-full animate-[pulse_3s_infinite]"></div>
+                        <div className="w-28 h-28 rounded-full bg-gradient-to-br from-zinc-800 to-zinc-900 border border-white/10 flex items-center justify-center relative z-10 shadow-2xl ring-1 ring-white/5">
+                            <User className="w-12 h-12 text-white/70" />
+                            {/* Status Dot */}
+                            <div className="absolute bottom-1 right-1 w-5 h-5 bg-black rounded-full flex items-center justify-center">
+                                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md">
-                        <Grid className="w-5 h-5 text-white" />
+
+                    {/* Waveform */}
+                    <div className="w-full px-12 mb-6 h-12 flex items-center justify-center">
+                        <div className="flex items-center justify-center gap-1.5 h-full w-full">
+                            {[...Array(12)].map((_, i) => (
+                                <motion.div
+                                    key={i}
+                                    className="w-1.5 bg-gradient-to-t from-orange-600 to-amber-400 rounded-full"
+                                    animate={{ height: [8, Math.random() * 32 + 8, 8] }}
+                                    transition={{ duration: 0.4, repeat: Infinity, repeatDelay: 0, ease: "easeInOut" }}
+                                />
+                            ))}
+                        </div>
                     </div>
-                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md">
-                        <Volume2 className="w-5 h-5 text-white" />
-                    </div>
-                    <div className="w-14 h-14 rounded-full bg-red-500 flex items-center justify-center shadow-lg shadow-red-500/30">
-                        <PhoneOff className="w-6 h-6 text-white fill-current" />
+                </div>
+
+                {/* Bottom Section - Pinned to bottom */}
+                <div className="w-full px-4 space-y-6">
+                    {/* Transcript Card */}
+                    <motion.div 
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        className="w-full bg-zinc-900/80 backdrop-blur-md rounded-2xl p-4 border border-white/10 shadow-lg relative overflow-hidden"
+                    >
+                        <div className="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+                        <p className="text-xs text-zinc-400 mb-1.5 font-medium flex items-center gap-1.5">
+                            <Mic className="w-3 h-3" /> Live Transcript
+                        </p>
+                        <p className="text-sm text-white leading-relaxed font-medium">
+                            "{transcript}"
+                            <span className="inline-block w-0.5 h-4 bg-orange-500 ml-0.5 align-middle animate-pulse"></span>
+                        </p>
+                    </motion.div>
+
+                    {/* Call Controls */}
+                    <div className="grid grid-cols-4 gap-2 items-center justify-items-center w-full px-2">
+                        <button className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md hover:bg-white/20 transition-colors">
+                            <MicOff className="w-5 h-5 text-white" />
+                        </button>
+                        <button className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md hover:bg-white/20 transition-colors">
+                            <Grid className="w-5 h-5 text-white" />
+                        </button>
+                        <button className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md hover:bg-white/20 transition-colors">
+                            <Volume2 className="w-5 h-5 text-white" />
+                        </button>
+                        <button className="w-14 h-14 rounded-full bg-red-500 flex items-center justify-center shadow-lg shadow-red-500/30 hover:bg-red-600 transition-colors transform hover:scale-105 active:scale-95">
+                            <PhoneOff className="w-6 h-6 text-white fill-current" />
+                        </button>
                     </div>
                 </div>
             </div>
