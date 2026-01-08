@@ -28,25 +28,35 @@ const testimonials = [
 ];
 
 const logos = [
-  "AgencyFlow", "GrowthMasters", "RealtyPro", "SaaSify", "LeadGenX"
+  "AgencyFlow", "GrowthMasters", "RealtyPro", "SaaSify", "LeadGenX", "PipelinePro", "AutoScale", "ClickFunnel"
 ];
 
 export function SocialProof() {
   return (
-    <section className="py-16 bg-background border-b border-border/50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 bg-black border-b border-white/5 relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Trust Badges */}
-        <div className="text-center mb-16">
-          <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-6">
-            Trusted by 100+ High-Growth Agencies
+        {/* Trust Badges Marquee */}
+        <div className="text-center mb-16 relative">
+          <p className="text-sm font-medium text-zinc-500 uppercase tracking-wider mb-8">
+            Trusted by 10,000+ High-Growth Agencies
           </p>
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-            {logos.map((logo, i) => (
-              <span key={i} className="text-xl font-bold text-white/40 hover:text-white/80 transition-colors cursor-default">
-                {logo}
-              </span>
-            ))}
+          
+          <div className="flex overflow-hidden relative mask-gradient-x">
+             <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10"></div>
+             <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10"></div>
+             
+             <motion.div 
+                className="flex gap-16 min-w-full items-center"
+                animate={{ x: ["0%", "-100%"] }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+             >
+                {[...logos, ...logos, ...logos].map((logo, i) => (
+                  <span key={i} className="text-2xl font-bold text-white/20 hover:text-white/40 transition-colors whitespace-nowrap cursor-default">
+                    {logo}
+                  </span>
+                ))}
+             </motion.div>
           </div>
         </div>
 
@@ -59,22 +69,22 @@ export function SocialProof() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-secondary/20 border border-white/5 p-6 rounded-2xl hover:bg-secondary/40 transition-colors"
+              className="bg-white/[0.03] backdrop-blur-sm border border-white/5 p-8 rounded-2xl hover:bg-white/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-white/10 group"
             >
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-1 mb-6">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 text-yellow-500 fill-yellow-500" />
                 ))}
               </div>
-              <h3 className="text-2xl font-bold text-primary mb-2">{t.result}</h3>
-              <p className="text-muted-foreground mb-6 italic">"{t.quote}"</p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center font-bold text-white">
+              <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">{t.result}</h3>
+              <p className="text-zinc-400 mb-8 leading-relaxed">"{t.quote}"</p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-zinc-800 to-zinc-900 border border-white/10 flex items-center justify-center font-bold text-white text-lg">
                     {t.name[0]}
                 </div>
                 <div>
                   <div className="font-semibold text-white">{t.name}</div>
-                  <div className="text-xs text-muted-foreground">{t.role}, {t.company}</div>
+                  <div className="text-sm text-zinc-500">{t.role}, {t.company}</div>
                 </div>
               </div>
             </motion.div>
